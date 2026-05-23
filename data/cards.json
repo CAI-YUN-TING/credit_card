@@ -1,0 +1,731 @@
+{
+  "updated_at": "2026-05-13T02:00:00+08:00",
+  "source": "Google Gemini AI + Google Search（每週自動更新，永久免費）",
+  "cards": [
+    {
+      "bank": "玉山銀行",
+      "card": "熊本熊卡",
+      "card_url": "https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/kumamon_card",
+      "card_type": "overseas",
+      "rewards": [
+        {
+          "channels": [
+            "日本",
+            "日本消費",
+            "日本實體",
+            "日本旅遊"
+          ],
+          "pct": 8.5,
+          "reward_type": "現金回饋",
+          "cap": "NT$500/月",
+          "conditions": [
+            "日本實體消費",
+            "需登錄",
+            "雙幣卡免手續費"
+          ],
+          "type": "overseas"
+        },
+        {
+          "channels": [
+            "海外",
+            "agoda",
+            "booking",
+            "klook",
+            "airbnb",
+            "hotels"
+          ],
+          "pct": 1.5,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "一般海外消費",
+            "免收1.5%手續費"
+          ],
+          "type": "overseas"
+        },
+        {
+          "channels": [
+            "一般"
+          ],
+          "pct": 0.5,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [],
+          "type": "both"
+        }
+      ]
+    },
+    {
+      "bank": "玉山銀行",
+      "card": "Unicard",
+      "card_url": "https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/unicard",
+      "card_type": "both",
+      "rewards": [
+        {
+          "channels": [
+            "momo購物",
+            "蝦皮",
+            "pchome",
+            "yahoo",
+            "foodpanda",
+            "uber eats",
+            "外送",
+            "7-eleven",
+            "711",
+            "全家",
+            "萊爾富",
+            "全聯",
+            "家樂福",
+            "line pay",
+            "街口",
+            "行動支付",
+            "中油",
+            "加油",
+            "klook",
+            "agoda",
+            "booking"
+          ],
+          "pct": 3.5,
+          "reward_type": "現金回饋",
+          "cap": "NT$500/月",
+          "conditions": [
+            "任意選方案，自選8特店",
+            "需設電子帳單及玉山自扣"
+          ],
+          "type": "both"
+        },
+        {
+          "channels": [
+            "momo購物",
+            "蝦皮",
+            "pchome",
+            "全聯",
+            "全家",
+            "7-eleven",
+            "711",
+            "萊爾富",
+            "line pay",
+            "中油",
+            "加油"
+          ],
+          "pct": 3.0,
+          "reward_type": "現金回饋",
+          "cap": "NT$500/月",
+          "conditions": [
+            "簡單選方案",
+            "設電子帳單及玉山自扣"
+          ],
+          "type": "both"
+        },
+        {
+          "channels": [
+            "一般"
+          ],
+          "pct": 0.3,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "基本回饋"
+          ],
+          "type": "both"
+        }
+      ]
+    },
+    {
+      "bank": "玉山銀行",
+      "card": "U Bear卡",
+      "card_url": "https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/u-bear",
+      "card_type": "both",
+      "rewards": [
+        {
+          "channels": [
+            "netflix",
+            "disney+",
+            "youtube",
+            "spotify",
+            "影音",
+            "娛樂",
+            "遊戲",
+            "nintendo",
+            "playstation"
+          ],
+          "pct": 10.0,
+          "reward_type": "現金回饋",
+          "cap": "NT$100/月",
+          "conditions": [
+            "指定娛樂/影音平台"
+          ],
+          "type": "both"
+        },
+        {
+          "channels": [
+            "momo購物",
+            "蝦皮",
+            "pchome",
+            "網路購物",
+            "line pay",
+            "街口",
+            "行動支付",
+            "foodpanda",
+            "uber eats",
+            "外送"
+          ],
+          "pct": 3.0,
+          "reward_type": "現金回饋",
+          "cap": "NT$150/月",
+          "conditions": [
+            "網購/行動支付",
+            "需綁玉山電子帳單"
+          ],
+          "type": "domestic"
+        },
+        {
+          "channels": [
+            "一般"
+          ],
+          "pct": 1.0,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [],
+          "type": "both"
+        }
+      ]
+    },
+    {
+      "bank": "玉山銀行",
+      "card": "Nissan聯名卡",
+      "card_url": "https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/nissan",
+      "card_type": "both",
+      "rewards": [
+        {
+          "channels": [
+            "中油",
+            "加油",
+            "中油直營",
+            "中油pay"
+          ],
+          "pct": 8.0,
+          "reward_type": "ePoint",
+          "cap": "NT$100/月(加碼)",
+          "conditions": [
+            "當期消費滿NT$5,000",
+            "需綁中油Pay並登錄"
+          ],
+          "type": "domestic"
+        },
+        {
+          "channels": [
+            "海外",
+            "agoda",
+            "booking",
+            "klook"
+          ],
+          "pct": 1.5,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "一般海外消費"
+          ],
+          "type": "overseas"
+        },
+        {
+          "channels": [
+            "一般"
+          ],
+          "pct": 0.2,
+          "reward_type": "ePoint",
+          "cap": null,
+          "conditions": [],
+          "type": "both"
+        }
+      ]
+    },
+    {
+      "bank": "中國信託",
+      "card": "中油聯名卡",
+      "card_url": "https://www.ctbcbank.com/twrbo/zh_tw/cc_index/cc_product/cc_introduction_index/C_CPC.html",
+      "card_type": "domestic",
+      "rewards": [
+        {
+          "channels": [
+            "中油",
+            "加油",
+            "中油pay",
+            "中油直營"
+          ],
+          "pct": 6.8,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "綁定中油Pay",
+            "週一儲值NT$3,000加碼2%",
+            "最高6.8%需疊加活動"
+          ],
+          "type": "domestic"
+        },
+        {
+          "channels": [
+            "一般"
+          ],
+          "pct": 0.26,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "非中油通路回饋偏低"
+          ],
+          "type": "both"
+        }
+      ]
+    },
+    {
+      "bank": "中國信託",
+      "card": "LINE Pay卡",
+      "card_url": "https://www.ctbcbank.com/twrbo/zh_tw/cc_index/cc_product/cc_introduction_index/C_UPE.html",
+      "card_type": "both",
+      "rewards": [
+        {
+          "channels": [
+            "klook",
+            "kkday",
+            "agoda",
+            "booking",
+            "旅遊",
+            "hotels.com",
+            "易遊網",
+            "雄獅"
+          ],
+          "pct": 10.0,
+          "reward_type": "LINE Points",
+          "cap": null,
+          "conditions": [
+            "指定旅遊平台",
+            "需透過指定頁面進入"
+          ],
+          "type": "overseas"
+        },
+        {
+          "channels": [
+            "line pay",
+            "全聯",
+            "7-eleven",
+            "711",
+            "全家",
+            "萊爾富",
+            "foodpanda",
+            "uber eats",
+            "外送"
+          ],
+          "pct": 5.0,
+          "reward_type": "LINE Points",
+          "cap": "NT$500/月",
+          "conditions": [
+            "綁定LINE Pay消費",
+            "需設電子帳單"
+          ],
+          "type": "domestic"
+        },
+        {
+          "channels": [
+            "海外",
+            "agoda",
+            "booking",
+            "klook",
+            "airbnb"
+          ],
+          "pct": 2.8,
+          "reward_type": "LINE Points",
+          "cap": null,
+          "conditions": [
+            "海外一般消費"
+          ],
+          "type": "overseas"
+        },
+        {
+          "channels": [
+            "一般"
+          ],
+          "pct": 1.0,
+          "reward_type": "LINE Points",
+          "cap": null,
+          "conditions": [],
+          "type": "both"
+        }
+      ]
+    },
+    {
+      "bank": "中國信託",
+      "card": "UniOpen卡",
+      "card_url": "https://mkt.ctbcbank.com/long/creditcard/N2025052600033_01/index.html",
+      "card_type": "both",
+      "rewards": [
+        {
+          "channels": [
+            "7-eleven",
+            "711",
+            "家樂福",
+            "康是美",
+            "星巴克",
+            "博客來",
+            "夢時代",
+            "統一集團"
+          ],
+          "pct": 11.0,
+          "reward_type": "OPENPOINT",
+          "cap": "NT$500/月(加碼)",
+          "conditions": [
+            "統一集團通路",
+            "需icash Pay+踩點任務"
+          ],
+          "type": "domestic"
+        },
+        {
+          "channels": [
+            "7-eleven",
+            "711",
+            "家樂福",
+            "康是美",
+            "星巴克"
+          ],
+          "pct": 7.0,
+          "reward_type": "OPENPOINT",
+          "cap": "NT$500/月",
+          "conditions": [
+            "統一集團基本加碼（含家樂富錢包4%）"
+          ],
+          "type": "domestic"
+        },
+        {
+          "channels": [
+            "海外",
+            "日本",
+            "韓國",
+            "泰國",
+            "越南",
+            "菲律賓"
+          ],
+          "pct": 1.5,
+          "reward_type": "OPENPOINT",
+          "cap": null,
+          "conditions": [
+            "日韓泰越菲海外消費"
+          ],
+          "type": "overseas"
+        },
+        {
+          "channels": [
+            "一般"
+          ],
+          "pct": 1.0,
+          "reward_type": "OPENPOINT",
+          "cap": null,
+          "conditions": [],
+          "type": "both"
+        }
+      ]
+    },
+    {
+      "bank": "中國信託",
+      "card": "商旅鈦金卡",
+      "card_url": "https://www.ctbcbank.com/content/dam/minisite/long/creditcard/TravelTitanium/index.html",
+      "card_type": "both",
+      "rewards": [
+        {
+          "channels": [
+            "愛買",
+            "家樂福",
+            "加油",
+            "uber",
+            "gogoro",
+            "誠品",
+            "博客來",
+            "健身"
+          ],
+          "pct": 5.0,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "指定生活商店",
+            "需登錄活動"
+          ],
+          "type": "domestic"
+        },
+        {
+          "channels": [
+            "餐廳",
+            "美食",
+            "ikea",
+            "百貨"
+          ],
+          "pct": 5.0,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "指定餐廳/百貨",
+            "需登錄活動"
+          ],
+          "type": "domestic"
+        },
+        {
+          "channels": [
+            "海外",
+            "agoda",
+            "booking",
+            "klook",
+            "airbnb",
+            "hotels",
+            "日本",
+            "韓國",
+            "泰國",
+            "新加坡",
+            "機票"
+          ],
+          "pct": 2.5,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "海外實體消費無上限"
+          ],
+          "type": "overseas"
+        },
+        {
+          "channels": [
+            "momo購物",
+            "蝦皮",
+            "pchome",
+            "網路購物",
+            "yahoo"
+          ],
+          "pct": 2.5,
+          "reward_type": "現金回饋",
+          "cap": "NT$300/月",
+          "conditions": [
+            "指定網購加碼",
+            "限量3,000名/季需登錄"
+          ],
+          "type": "domestic"
+        },
+        {
+          "channels": [
+            "一般"
+          ],
+          "pct": 1.0,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "國內外一般消費無上限"
+          ],
+          "type": "both"
+        }
+      ]
+    },
+    {
+      "bank": "台新銀行",
+      "card": "Richart卡",
+      "card_url": "https://richart.tw/TSDIB_RichartWeb/card/credit-card",
+      "card_type": "both",
+      "rewards": [
+        {
+          "channels": [
+            "momo購物",
+            "蝦皮",
+            "pchome",
+            "yahoo",
+            "網路購物",
+            "外送",
+            "foodpanda",
+            "uber eats"
+          ],
+          "pct": 3.8,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "切換「好饗刷」方案",
+            "無上限"
+          ],
+          "type": "domestic"
+        },
+        {
+          "channels": [
+            "海外",
+            "agoda",
+            "booking",
+            "klook",
+            "airbnb",
+            "日本",
+            "韓國",
+            "泰國"
+          ],
+          "pct": 3.3,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "切換「玩旅刷」方案",
+            "無上限"
+          ],
+          "type": "overseas"
+        },
+        {
+          "channels": [
+            "全聯",
+            "全家",
+            "7-eleven",
+            "711",
+            "萊爾富",
+            "超商",
+            "量販",
+            "line pay",
+            "街口"
+          ],
+          "pct": 3.3,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "切換「天天刷」方案",
+            "無上限"
+          ],
+          "type": "domestic"
+        },
+        {
+          "channels": [
+            "一般"
+          ],
+          "pct": 0.3,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [],
+          "type": "both"
+        }
+      ]
+    },
+    {
+      "bank": "星展銀行",
+      "card": "傳說對決卡",
+      "card_url": "https://www.dbs.com.tw/personal-zh/cards/dbs-credit-cards/aov",
+      "card_type": "both",
+      "rewards": [
+        {
+          "channels": [
+            "line pay",
+            "外送",
+            "foodpanda",
+            "uber eats",
+            "遊戲",
+            "影音",
+            "netflix",
+            "disney+",
+            "spotify",
+            "速食",
+            "麥當勞",
+            "肯德基"
+          ],
+          "pct": 10.0,
+          "reward_type": "現金回饋",
+          "cap": "NT$150/月",
+          "conditions": [
+            "需設星禧帳戶自扣",
+            "新戶上限150點/月"
+          ],
+          "type": "both"
+        },
+        {
+          "channels": [
+            "海外",
+            "agoda",
+            "booking",
+            "klook",
+            "日本",
+            "韓國"
+          ],
+          "pct": 2.5,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "一般海外消費"
+          ],
+          "type": "overseas"
+        },
+        {
+          "channels": [
+            "一般"
+          ],
+          "pct": 1.0,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [],
+          "type": "both"
+        }
+      ]
+    },
+    {
+      "bank": "星展銀行",
+      "card": "eco永續卡",
+      "card_url": "https://www.dbs.com.tw/personal-zh/cards/dbs-credit-cards/eco-ez",
+      "card_type": "both",
+      "rewards": [
+        {
+          "channels": [
+            "tesla",
+            "gogoro",
+            "電動車",
+            "充電"
+          ],
+          "pct": 10.0,
+          "reward_type": "現金回饋",
+          "cap": "NT$300/月",
+          "conditions": [
+            "需綁定Tesla/Gogoro APP繳費"
+          ],
+          "type": "domestic"
+        },
+        {
+          "channels": [
+            "海外",
+            "日本",
+            "韓國",
+            "泰國",
+            "新加坡",
+            "美洲",
+            "歐洲"
+          ],
+          "pct": 5.0,
+          "reward_type": "現金回饋",
+          "cap": "NT$600/月",
+          "conditions": [
+            "指定國家實體消費加碼4%",
+            "需登錄"
+          ],
+          "type": "overseas"
+        },
+        {
+          "channels": [
+            "agoda",
+            "booking",
+            "klook",
+            "airbnb",
+            "hotels",
+            "旅遊"
+          ],
+          "pct": 5.0,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "存戶/豐盛理財客戶額外回饋"
+          ],
+          "type": "overseas"
+        },
+        {
+          "channels": [
+            "一般"
+          ],
+          "pct": 1.2,
+          "reward_type": "現金回饋",
+          "cap": null,
+          "conditions": [
+            "國內外一般消費無上限"
+          ],
+          "type": "both"
+        }
+      ]
+    }
+  ]
+}
