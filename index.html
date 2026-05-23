@@ -230,6 +230,7 @@ async function loadData() {
       bar.style.display = 'flex';
     }
     renderBanks();
+    sa(true);
   } catch(e) {
     bar.className = 'data-bar err';
     bar.textContent = '⚠️ 無法載入回饋資料（' + e.message + '）';
@@ -268,7 +269,7 @@ function renderBanks() {
       var lbl = hasBoth ? '通用' : types.indexOf('overseas') > -1 ? '海外' : '國內';
       var key = bank + '__' + c.card;
       html += '<label class="crow">';
-      html += '<input type="checkbox" id="cb_' + key + '" onchange="tc(\'' + key + '\')" />';
+      html += '<input type="checkbox" id="cb_' + key + '" onchange="tc(\'' + key + '\')" checked />';
       html += '<span class="cname">' + c.card + '</span>';
       html += '<span class="bdg ' + cls + '">' + lbl + '</span>';
       html += '</label>';
