@@ -1,4 +1,0 @@
-name: Build
-
-# 1. 這裡定義觸發條件
-on: [push] # 👈 只要有任何 push 動作就觸發
