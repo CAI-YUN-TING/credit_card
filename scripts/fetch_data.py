@@ -1,15 +1,10 @@
-"""
-fetch_data.py
-每週自動向 Google Gemini 查詢最新信用卡優惠，將結果存為 data/cards.json
-使用 Gemini Free Tier（永久免費，每天 1,500 次請求）
-"""
-
 import os
 import json
 import re
 import urllib.request
 import urllib.error
 from datetime import datetime, timezone, timedelta
+import time
 
 # ── 設定 ──────────────────────────────────────────────
 CARDS = [
@@ -47,18 +42,16 @@ PROMPT = """你是台灣信用卡回饋分析專家。請用 Google 搜尋查詢
 ## 需要查詢的卡片
 {cards_list}
 
-## 需要涵蓋的消費通路
+## 需要涵蓋的消費通路關鍵字清單（若卡片在這些通路有加碼，請務必列出）
 {channels_list}
 
-## 輸出格式（只輸出純 JSON，不要有任何其他文字或 markdown code fence）
-
+## 輸出格式（請務必嚴格遵守純 JSON，不要有任何其他說明文字或 markdown 程式碼區塊標籤）
 {{
-  "updated_at": "ISO8601 時間字串",
   "cards": [
     {{
       "bank": "銀行名稱",
       "card": "卡片名稱",
-      "card_url": "銀行官網該卡片介紹頁 URL（請搜尋確認正確）",
+      "card_url": "銀行官網該卡片介紹頁 URL",
       "card_type": "both/domestic/overseas",
       "rewards": [
         {{
@@ -74,21 +67,24 @@ PROMPT = """你是台灣信用卡回饋分析專家。請用 Google 搜尋查詢
   ]
 }}
 
-注意：
-- channels 欄位請用台灣常見中文關鍵字，便於字串比對搜尋
-- 每張卡至少要有一筆「一般消費」的基本回饋記錄（channels 填 ["一般"]）
-- conditions 只列最重要的 1-3 個條件，簡短說明
-- 若資料不確定，cap 填 null，conditions 填「請至官網確認」
-- card_url 請搜尋各銀行官網確認正確的信用卡介紹頁連結
-- pct 為純數字，例如 3.5 代表 3.5%
+注意規範：
+1. channels 陣列請一律使用「小寫」中文或英文關鍵字（例如："line pay", "7-eleven", "foodpanda"），以便前端比對。
+2. 每張卡片**必須**包含一筆「一般消費」的基本回饋記錄，channels 填 `["一般"]`。
+3. pct 欄位必須是「純數字」（如：3.5），不要帶有 % 符號。
+4. 如果有指定通路加碼（例如國外實體、網購），請在 channels 欄位盡可能展開包含你查到的對應關鍵字。
 """
 
 def call_gemini(api_key, prompt):
     url  = GEMINI_API_URL.format(model=GEMINI_MODEL, key=api_key)
     body = {
         "contents": [{"parts": [{"text": prompt}]}],
-        # "tools": [{"google_search": {}}],  # 若需即時搜尋可取消此行註解，但需先至 Google Cloud 啟用 Billing
-        "generationConfig": {"temperature": 0.2, "maxOutputTokens": 8192},
+        # 【修改 1】若您有綁定 Google Cloud Billing，請務必解開此行以啟用真正的即時搜尋
+        # "tools": [{"google_search": {}}],  
+        "generationConfig": {
+            "temperature": 0.1, 
+            "maxOutputTokens": 8192,
+            "responseMimeType": "application/json" # 【修改 2】強制要求 Gemini 吐出純 JSON 格式
+        },
     }
     data = json.dumps(body).encode("utf-8")
     req  = urllib.request.Request(url, data=data,
@@ -104,6 +100,7 @@ def call_gemini(api_key, prompt):
         raise RuntimeError(f"無法解析 Gemini 回應: {resp}") from e
 
 def extract_json(text):
+    # 【修改 3】增強防錯，避免 AI 帶有 markdown 的 ```json 標籤
     clean = re.sub(r"```json\s*", "", text)
     clean = re.sub(r"```\s*", "", clean).strip()
     s, e  = clean.find("{"), clean.rfind("}") + 1
@@ -116,25 +113,42 @@ def fetch_card_data():
     if not api_key:
         raise EnvironmentError("請設定環境變數 GEMINI_API_KEY")
 
-    prompt = PROMPT.format(
-        cards_list="\n".join(f"- {c['bank']} {c['card']}" for c in CARDS),
-        channels_list="\n".join(f"- {ch}" for ch in CHANNELS),
-    )
+    # 【修改 4】分批請求（Chunking）邏輯，每次只查 4 張卡，防止一次查 11 張導致 Token 爆掉或 JSON 被截斷
+    all_cards_data = []
+    chunk_size = 4
+    
+    for i in range(0, len(CARDS), chunk_size):
+        chunk = CARDS[i:i+chunk_size]
+        cards_str = "\n".join(f"- {c['bank']} {c['card']}" for c in chunk)
+        
+        prompt = PROMPT.format(
+            cards_list=cards_str,
+            channels_list="\n".join(f"- {ch}" for ch in CHANNELS),
+        )
+        
+        print(f"🔍 正在查詢第 {i+1} ~ {min(i+chunk_size, len(CARDS))} 張卡片的優惠資訊...")
+        try:
+            raw = call_gemini(api_key, prompt)
+            chunk_json = extract_json(raw)
+            if "cards" in chunk_json:
+                all_cards_data.extend(chunk_json["cards"])
+            time.sleep(1) # 避免 Free Tier 頻率限制 (RPM)
+        except Exception as ex:
+            print(f"❌ 這一批查詢失敗，跳過: {ex}")
 
-    print(f"🔍 向 Gemini ({GEMINI_MODEL}) 查詢最新信用卡優惠（含 Google Search）...")
-    raw  = call_gemini(api_key, prompt)
-    print(f"✅ 回應長度：{len(raw)} 字元")
-
-    data = extract_json(raw)
-    tz   = timezone(timedelta(hours=8))
-    data["updated_at"] = datetime.now(tz).isoformat()
-    data["source"]     = "Google Gemini AI + Google Search（每週自動更新，永久免費）"
+    # 封裝成最終的檔案結構
+    tz = timezone(timedelta(hours=8))
+    final_data = {
+        "updated_at": datetime.now(tz).isoformat(),
+        "source": "Google Gemini AI + Google Search（每週自動更新，永久免費）",
+        "cards": all_cards_data
+    }
 
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        json.dump(final_data, f, ensure_ascii=False, indent=2)
 
-    print(f"💾 已儲存 {len(data.get('cards', []))} 張卡片資料 → {OUTPUT_PATH}")
+    print(f"💾 已儲存 {len(final_data['cards'])} 張卡片資料 → {OUTPUT_PATH}")
 
 if __name__ == "__main__":
     fetch_card_data()

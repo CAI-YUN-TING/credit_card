@@ -1,400 +1,901 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>卡省力｜信用卡回饋最佳化</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --bg:#F5F4F0; --surface:#FFFFFF; --surface2:#EEECEA;
-    --border:rgba(0,0,0,0.09); --border2:rgba(0,0,0,0.16);
-    --text:#1A1916; --text2:#6B6860; --text3:#9E9C96;
-    --accent:#1A1916;
-    --green:#3B6D11; --green-bg:#EAF3DE;
-    --amber:#854F0B; --amber-bg:#FAEEDA;
-    --blue:#185FA5;  --blue-bg:#E6F1FB;
-    --red:#A32D2D;   --red-bg:#FCEBEB;
-    --teal:#0F6E56;  --teal-bg:#E1F5EE;
-    --r:10px; --r-sm:6px;
-  }
-  @media (prefers-color-scheme:dark) {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>卡省力｜信用卡回饋最佳化</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
     :root {
-      --bg:#141412; --surface:#1E1D1A; --surface2:#2A2927;
-      --border:rgba(255,255,255,0.09); --border2:rgba(255,255,255,0.16);
-      --text:#F0EDE4; --text2:#9E9B94; --text3:#6B6860;
-      --green-bg:#1C3308; --green:#8BC34A;
-      --amber-bg:#3D2200; --amber:#F0A040;
-      --blue-bg:#0A2645;  --blue:#6DB3F2;
-      --red-bg:#3D0F0F;   --red:#F07070;
-      --teal-bg:#052820;  --teal:#4CC9A0;
+      --bg: #F5F4F0;
+      --surface: #FFFFFF;
+      --surface2: #EEECEA;
+      --border: rgba(0, 0, 0, 0.09);
+      --border2: rgba(0, 0, 0, 0.16);
+      --text: #1A1916;
+      --text2: #6B6860;
+      --text3: #9E9C96;
+      --accent: #1A1916;
+      --green: #3B6D11;
+      --green-bg: #EAF3DE;
+      --amber: #854F0B;
+      --amber-bg: #FAEEDA;
+      --blue: #185FA5;
+      --blue-bg: #E6F1FB;
+      --red: #A32D2D;
+      --red-bg: #FCEBEB;
+      --teal: #0F6E56;
+      --teal-bg: #E1F5EE;
+      --r: 10px;
+      --r-sm: 6px;
     }
-  }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { font-family:'Noto Sans TC',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
 
-  /* HEADER */
-  .hdr { background:var(--surface); border-bottom:1px solid var(--border); height:54px; display:flex; align-items:center; justify-content:space-between; padding:0 1.25rem; position:sticky; top:0; z-index:100; }
-  .logo { display:flex; align-items:center; gap:9px; }
-  .logo-mark { width:30px; height:30px; border-radius:8px; background:var(--accent); color:#fff; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; }
-  .logo-name { font-size:15px; font-weight:700; letter-spacing:-0.3px; }
-  .hdr-right { display:flex; align-items:center; gap:10px; }
-  .update-pill { font-size:11px; color:var(--text3); display:flex; align-items:center; gap:5px; }
-  .udot { width:6px; height:6px; border-radius:50%; background:var(--teal); }
-  .refresh-btn { font-size:12px; padding:4px 10px; border-radius:6px; border:1px solid var(--border2); background:transparent; color:var(--text2); cursor:pointer; font-family:inherit; display:flex; align-items:center; gap:5px; }
-  .refresh-btn:hover { background:var(--surface2); }
+    @media (prefers-color-scheme:dark) {
+      :root {
+        --bg: #141412;
+        --surface: #1E1D1A;
+        --surface2: #2A2927;
+        --border: rgba(255, 255, 255, 0.09);
+        --border2: rgba(255, 255, 255, 0.16);
+        --text: #F0EDE4;
+        --text2: #9E9B94;
+        --text3: #6B6860;
+        --green-bg: #1C3308;
+        --green: #8BC34A;
+        --amber-bg: #3D2200;
+        --amber: #F0A040;
+        --blue-bg: #0A2645;
+        --blue: #6DB3F2;
+        --red-bg: #3D0F0F;
+        --red: #F07070;
+        --teal-bg: #052820;
+        --teal: #4CC9A0;
+      }
+    }
 
-  /* LAYOUT */
-  .wrap { max-width:860px; margin:0 auto; padding:1.25rem 1rem 4rem; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* SEARCH */
-  .search-box { background:var(--surface); border:1.5px solid var(--border2); border-radius:14px; padding:10px 12px; display:flex; align-items:center; gap:10px; margin-bottom:.875rem; transition:border-color .15s,box-shadow .15s; }
-  .search-box:focus-within { border-color:var(--blue); box-shadow:0 0 0 3px rgba(24,95,165,0.10); }
-  .search-box svg { flex-shrink:0; color:var(--text3); }
-  .search-box input { flex:1; border:none; background:transparent; outline:none; font-family:inherit; font-size:16px; color:var(--text); }
-  .search-box input::placeholder { color:var(--text3); }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
 
-  /* TAGS */
-  .tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:.875rem; }
-  .tag { padding:5px 11px; border-radius:20px; border:1px solid var(--border2); background:var(--surface); color:var(--text2); font-size:12px; cursor:pointer; font-family:inherit; }
-  .tag:hover { border-color:var(--blue); color:var(--blue); background:var(--blue-bg); }
+    /* HEADER */
+    .hdr {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.25rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-  /* TYPE TOGGLE */
-  .trow { display:flex; align-items:center; gap:7px; margin-bottom:1.25rem; }
-  .tlbl { font-size:12px; color:var(--text2); }
-  .tbtn { padding:5px 13px; border-radius:20px; border:1px solid var(--border2); background:transparent; color:var(--text2); font-size:12px; cursor:pointer; font-family:inherit; }
-  .tbtn.on { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:500; }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
 
-  /* SECTION */
-  .sec-hdr { display:flex; align-items:center; justify-content:space-between; margin-bottom:.7rem; }
-  .sec-lbl { font-size:11px; font-weight:700; color:var(--text3); letter-spacing:1px; text-transform:uppercase; }
-  .sel-row { display:flex; gap:2px; }
-  .sel-btn { font-size:11px; color:var(--blue); background:none; border:none; cursor:pointer; padding:2px 5px; font-family:inherit; }
-  .sel-btn:hover { text-decoration:underline; }
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-  /* BANK GRID */
-  .bank-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:9px; margin-bottom:1.75rem; }
-  .bcard { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:13px; }
-  .bcard-hdr { display:flex; align-items:center; gap:8px; margin-bottom:9px; }
-  .bicon { width:27px; height:27px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; }
-  .bname { font-size:13px; font-weight:700; }
-  .clist { display:flex; flex-direction:column; gap:3px; }
-  .crow { display:flex; align-items:center; gap:7px; padding:5px; border-radius:6px; cursor:pointer; }
-  .crow:hover { background:var(--surface2); }
-  .crow input { width:14px; height:14px; accent-color:var(--accent); flex-shrink:0; cursor:pointer; }
-  .cname { font-size:12.5px; flex:1; }
-  .bdg { font-size:10px; padding:1px 6px; border-radius:10px; white-space:nowrap; }
-  .bo { background:var(--blue-bg);  color:var(--blue); }
-  .bd { background:var(--green-bg); color:var(--green); }
-  .bb { background:var(--amber-bg); color:var(--amber); }
+    .logo-name {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
 
-  /* DATA BAR */
-  .data-bar { border-radius:var(--r-sm); padding:8px 14px; font-size:12px; display:flex; align-items:center; gap:8px; margin-bottom:1rem; }
-  .data-bar.ok   { background:var(--teal-bg); border:1px solid var(--teal); color:var(--teal); }
-  .data-bar.warn { background:var(--amber-bg); border:1px solid var(--amber); color:var(--amber); }
-  .data-bar.err  { background:var(--red-bg); border:1px solid var(--red); color:var(--red); }
+    .hdr-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-  /* RESULTS */
-  .res-hdr { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:.75rem; flex-wrap:wrap; gap:6px; }
-  .res-title { font-size:15px; font-weight:700; }
-  .res-meta { font-size:12px; color:var(--text3); margin-top:3px; display:flex; align-items:center; gap:6px; }
-  .ai-badge { font-size:10px; padding:2px 7px; border-radius:10px; background:var(--teal-bg); color:var(--teal); font-weight:500; }
-  .res-count { font-size:12px; color:var(--text3); align-self:flex-end; }
-  .empty { padding:2.5rem 1rem; text-align:center; background:var(--surface); border:1px dashed var(--border2); border-radius:var(--r); color:var(--text3); font-size:14px; line-height:1.8; }
+    .update-pill {
+      font-size: 11px;
+      color: var(--text3);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
 
-  /* TABLE */
-  .tbl-wrap { overflow-x:auto; border-radius:var(--r); border:1px solid var(--border); }
-  table { width:100%; border-collapse:collapse; font-size:13px; }
-  th { padding:9px 13px; text-align:left; font-size:10.5px; font-weight:700; letter-spacing:.7px; text-transform:uppercase; color:var(--text3); background:var(--surface2); border-bottom:1px solid var(--border); white-space:nowrap; }
-  td { padding:11px 13px; border-bottom:1px solid var(--border); vertical-align:top; }
-  tr:last-child td { border-bottom:none; }
-  tr:hover td { background:var(--surface2); }
-  .rk { width:22px; height:22px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; }
-  .r1{background:#FAC775;color:#412402;} .r2{background:#D3D1C7;color:#2C2C2A;} .r3{background:#F5C4B3;color:#4A1B0C;} .rn{background:var(--surface2);color:var(--text3);}
-  .pnum { font-size:17px; font-weight:700; }
-  .ph{color:var(--green);} .pm{color:var(--amber);} .pl{color:var(--text2);}
-  .rtype { font-size:10px; color:var(--text3); display:block; margin-top:1px; }
-  .chip { display:inline-block; font-size:11px; padding:2px 7px; border-radius:10px; background:var(--surface2); border:1px solid var(--border); color:var(--text2); margin:1px 2px 1px 0; }
-  .cap-v { font-size:12px; color:var(--text2); }
-  .cap-n { font-size:12px; color:var(--text3); font-style:italic; }
-  .bsub { font-size:11px; color:var(--text3); margin-bottom:2px; }
-  .cmain { font-size:13px; font-weight:700; }
+    .udot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
 
-  footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); text-align:center; font-size:12px; color:var(--text3); line-height:2; }
-  footer a { color:var(--blue); text-decoration:none; }
+    .refresh-btn {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border2);
+      background: transparent;
+      color: var(--text2);
+      cursor: pointer;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
 
-  @media(max-width:600px) {
-    .wrap { padding:1rem .75rem 3rem; }
-    .bank-grid { grid-template-columns:1fr; }
-    .hide-m { display:none; }
-    .hdr-right .update-pill span { display:none; }
-  }
-</style>
+    .refresh-btn:hover {
+      background: var(--surface2);
+    }
+
+    /* LAYOUT */
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 4rem;
+    }
+
+    /* SEARCH */
+    .search-box {
+      background: var(--surface);
+      border: 1.5px solid var(--border2);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: .875rem;
+      transition: border-color .15s, box-shadow .15s;
+    }
+
+    .search-box:focus-within {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(24, 95, 165, 0.10);
+    }
+
+    .search-box svg {
+      flex-shrink: 0;
+      color: var(--text3);
+    }
+
+    .search-box input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: inherit;
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    .search-box input::placeholder {
+      color: var(--text3);
+    }
+
+    /* TAGS */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: .875rem;
+    }
+
+    .tag {
+      padding: 5px 11px;
+      border-radius: 20px;
+      border: 1px solid var(--border2);
+      background: var(--surface);
+      color: var(--text2);
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .tag:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-bg);
+    }
+
+    /* TYPE TOGGLE */
+    .trow {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 1.25rem;
+    }
+
+    .tlbl {
+      font-size: 12px;
+      color: var(--text2);
+    }
+
+    .tbtn {
+      padding: 5px 13px;
+      border-radius: 20px;
+      border: 1px solid var(--border2);
+      background: transparent;
+      color: var(--text2);
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .tbtn.on {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      font-weight: 500;
+    }
+
+    /* SECTION */
+    .sec-hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: .7rem;
+    }
+
+    .sec-lbl {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text3);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .sel-row {
+      display: flex;
+      gap: 2px;
+    }
+
+    .sel-btn {
+      font-size: 11px;
+      color: var(--blue);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 2px 5px;
+      font-family: inherit;
+    }
+
+    .sel-btn:hover {
+      text-decoration: underline;
+    }
+
+    /* BANK GRID */
+    .bank-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 9px;
+      margin-bottom: 1.75rem;
+    }
+
+    .bcard {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 13px;
+    }
+
+    .bcard-hdr {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 9px;
+    }
+
+    .bicon {
+      width: 27px;
+      height: 27px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .bname {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .clist {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .crow {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .crow:hover {
+      background: var(--surface2);
+    }
+
+    .crow input {
+      width: 14px;
+      height: 14px;
+      accent-color: var(--accent);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .cname {
+      font-size: 12.5px;
+      flex: 1;
+    }
+
+    .bdg {
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    .bo {
+      background: var(--blue-bg);
+      color: var(--blue);
+    }
+
+    .bd {
+      background: var(--green-bg);
+      color: var(--green);
+    }
+
+    .bb {
+      background: var(--amber-bg);
+      color: var(--amber);
+    }
+
+    /* DATA BAR */
+    .data-bar {
+      border-radius: var(--r-sm);
+      padding: 8px 14px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .data-bar.ok {
+      background: var(--teal-bg);
+      border: 1px solid var(--teal);
+      color: var(--teal);
+    }
+
+    .data-bar.warn {
+      background: var(--amber-bg);
+      border: 1px solid var(--amber);
+      color: var(--amber);
+    }
+
+    .data-bar.err {
+      background: var(--red-bg);
+      border: 1px solid var(--red);
+      color: var(--red);
+    }
+
+    /* RESULTS */
+    .res-hdr {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: .75rem;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .res-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .res-meta {
+      font-size: 12px;
+      color: var(--text3);
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ai-badge {
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 10px;
+      background: var(--teal-bg);
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    .res-count {
+      font-size: 12px;
+      color: var(--text3);
+      align-self: flex-end;
+    }
+
+    .empty {
+      padding: 2.5rem 1rem;
+      text-align: center;
+      background: var(--surface);
+      border: 1px dashed var(--border2);
+      border-radius: var(--r);
+      color: var(--text3);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* TABLE */
+    .tbl-wrap {
+      overflow-x: auto;
+      border-radius: var(--r);
+      border: 1px solid var(--border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th {
+      padding: 9px 13px;
+      text-align: left;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      color: var(--text3);
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 11px 13px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: var(--surface2);
+    }
+
+    .rk {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .r1 {
+      background: #FAC775;
+      color: #412402;
+    }
+
+    .r2 {
+      background: #D3D1C7;
+      color: #2C2C2A;
+    }
+
+    .r3 {
+      background: #F5C4B3;
+      color: #4A1B0C;
+    }
+
+    .rn {
+      background: var(--surface2);
+      color: var(--text3);
+    }
+
+    .pnum {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .ph {
+      color: var(--green);
+    }
+
+    .pm {
+      color: var(--amber);
+    }
+
+    .pl {
+      color: var(--text2);
+    }
+
+    .rtype {
+      font-size: 10px;
+      color: var(--text3);
+      display: block;
+      margin-top: 1px;
+    }
+
+    .chip {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 10px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      margin: 1px 2px 1px 0;
+    }
+
+    .cap-v {
+      font-size: 12px;
+      color: var(--text2);
+    }
+
+    .cap-n {
+      font-size: 12px;
+      color: var(--text3);
+      font-style: italic;
+    }
+
+    .bsub {
+      font-size: 11px;
+      color: var(--text3);
+      margin-bottom: 2px;
+    }
+
+    .cmain {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 12px;
+      color: var(--text3);
+      line-height: 2;
+    }
+
+    footer a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    @media(max-width:600px) {
+      .wrap {
+        padding: 1rem .75rem 3rem;
+      }
+
+      .bank-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hide-m {
+        display: none;
+      }
+
+      .hdr-right .update-pill span {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header class="hdr">
-  <div class="logo">
-    <div class="logo-mark">CC</div>
-    <span class="logo-name">卡省力</span>
-  </div>
-  <div class="hdr-right">
-    <div class="update-pill">
-      <div class="udot"></div>
-      <span id="updateTimeText">載入中...</span>
+  <header class="hdr">
+    <div class="logo">
+      <div class="logo-mark">CC</div>
+      <span class="logo-name">卡省力</span>
     </div>
-    <button class="refresh-btn" onclick="window.location.reload()">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
-        <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+    <div class="hdr-right">
+      <div class="update-pill">
+        <div class="udot"></div>
+        <span id="updateTimeText">載入中...</span>
+      </div>
+      <button class="refresh-btn" onclick="window.location.reload()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="23 4 23 10 17 10" />
+          <polyline points="1 20 1 14 7 14" />
+          <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15" />
+        </svg>
+        重新載入
+      </button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div id="dataBar" style="display:none"></div>
+
+    <div class="search-box">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.35-4.35" />
       </svg>
-      重新載入
-    </button>
-  </div>
-</header>
+      <input type="text" id="si" placeholder="輸入消費通路，如：中油加油、foodpanda、Netflix、一般消費..." />
+    </div>
 
-<div class="wrap">
-  <div id="dataBar" style="display:none"></div>
+    <div class="tags">
+      <button class="tag" onclick="sq('中油加油')">⛽ 中油加油</button>
+      <button class="tag" onclick="sq('foodpanda')">🛵 foodpanda</button>
+      <button class="tag" onclick="sq('momo購物')">🛒 momo購物</button>
+      <button class="tag" onclick="sq('LINE Pay')">💚 LINE Pay</button>
+      <button class="tag" onclick="sq('7-ELEVEN')">🏪 7-ELEVEN</button>
+      <button class="tag" onclick="sq('Netflix')">🎬 Netflix</button>
+      <button class="tag" onclick="sq('一般消費')">💵 一般消費</button>
+      <button class="tag" onclick="sq('海外消費')">🌏 海外消費</button>
+      <button class="tag" onclick="sq('日本消費')">🗾 日本消費</button>
+      <button class="tag" onclick="sq('家樂福')">🏬 家樂福</button>
+      <button class="tag" onclick="sq('Gogoro')">⚡ Gogoro</button>
+    </div>
 
-  <div class="search-box">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-    </svg>
-    <input type="text" id="si" placeholder="輸入消費通路，如：中油加油、foodpanda、Netflix、海外消費..." />
-  </div>
+    <div class="trow">
+      <span class="tlbl">消費類型：</span>
+      <button class="tbtn on" id="bAll" onclick="st('all')">全部</button>
+      <button class="tbtn" id="bDom" onclick="st('domestic')">國內</button>
+      <button class="tbtn" id="bOvs" onclick="st('overseas')">海外</button>
+    </div>
 
-  <div class="tags">
-    <button class="tag" onclick="sq('中油加油')">⛽ 中油加油</button>
-    <button class="tag" onclick="sq('foodpanda')">🛵 foodpanda</button>
-    <button class="tag" onclick="sq('momo購物')">🛒 momo購物</button>
-    <button class="tag" onclick="sq('LINE Pay')">💚 LINE Pay</button>
-    <button class="tag" onclick="sq('7-ELEVEN')">🏪 7-ELEVEN</button>
-    <button class="tag" onclick="sq('Netflix')">🎬 Netflix</button>
-    <button class="tag" onclick="sq('海外消費')">🌏 海外消費</button>
-    <button class="tag" onclick="sq('日本消費')">🗾 日本消費</button>
-    <button class="tag" onclick="sq('家樂福')">🏬 家樂福</button>
-    <button class="tag" onclick="sq('Gogoro充電')">⚡ Gogoro</button>
-  </div>
+    <div class="sec-hdr">
+      <span class="sec-lbl">選擇你持有的信用卡</span>
+      <div class="sel-row">
+        <button class="sel-btn" onclick="sa(true)">全選</button>
+        <span style="color:var(--text3);font-size:11px;padding:0 2px">·</span>
+        <button class="sel-btn" onclick="sa(false)">清除</button>
+      </div>
+    </div>
+    <div class="bank-grid" id="bg"></div>
 
-  <div class="trow">
-    <span class="tlbl">消費類型：</span>
-    <button class="tbtn on" id="bAll" onclick="st('all')">全部</button>
-    <button class="tbtn" id="bDom" onclick="st('domestic')">國內</button>
-    <button class="tbtn" id="bOvs" onclick="st('overseas')">海外</button>
-  </div>
-
-  <div class="sec-hdr">
-    <span class="sec-lbl">選擇你持有的信用卡</span>
-    <div class="sel-row">
-      <button class="sel-btn" onclick="sa(true)">全選</button>
-      <span style="color:var(--text3);font-size:11px;padding:0 2px">·</span>
-      <button class="sel-btn" onclick="sa(false)">清除</button>
+    <div id="ra">
+      <div class="empty">請先輸入消費通路，並勾選你持有的信用卡<br><span style="font-size:12px">資料由 Google Gemini AI 每週自動更新，無需任何 API
+          Key</span></div>
     </div>
   </div>
-  <div class="bank-grid" id="bg"></div>
 
-  <div id="ra">
-    <div class="empty">請先輸入消費通路，並勾選你持有的信用卡<br><span style="font-size:12px">資料由 Google Gemini AI 每週自動更新，無需任何 API Key</span></div>
-  </div>
-</div>
+  <footer>
+    <p>資料由 Google Gemini AI + Google Search 每週自動更新 · 僅供參考，以各銀行官網公告為準</p>
+  </footer>
 
-<footer>
-  <p>資料由 Google Gemini AI + Google Search 每週自動更新 · 僅供參考，以各銀行官網公告為準</p>
-</footer>
+  <script>
+    let DB = null;
+    let checked = new Set();
+    let ctype = 'all';
+    let debounceTimeout = null;
 
-<script>
-let DB = null;
-let checked = new Set();
-let ctype = 'all';
+    async function loadData() {
+      const bar = document.getElementById('dataBar');
+      try {
+        const res = await fetch('data/cards.json?v=' + Date.now());
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        DB = await res.json();
 
-async function loadData() {
-  const bar = document.getElementById('dataBar');
-  try {
-    const res = await fetch('data/cards.json?v=' + Date.now());
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    DB = await res.json();
-
-    if (DB.updated_at) {
-      const d = new Date(DB.updated_at);
-      const diffDays = Math.floor((new Date() - d) / 86400000);
-      const label = diffDays === 0 ? '今天' : diffDays === 1 ? '昨天' : diffDays + ' 天前';
-      document.getElementById('updateTimeText').textContent = '資料更新：' + label + '（' + d.toLocaleDateString('zh-TW') + '）';
-      if (diffDays > 10) {
-        bar.className = 'data-bar warn';
-        bar.textContent = '⚠️ 資料已有 ' + diffDays + ' 天未更新，優惠條件可能有變動，請以各銀行官網為準';
-      } else {
-        bar.className = 'data-bar ok';
-        bar.textContent = '✓ ' + (DB.source || 'Google Gemini AI + Google Search 每週自動更新');
+        if (DB.updated_at) {
+          const d = new Date(DB.updated_at);
+          const diffDays = Math.floor((new Date() - d) / 86400000);
+          const label = diffDays === 0 ? '今天' : diffDays === 1 ? '昨天' : diffDays + ' 天前';
+          document.getElementById('updateTimeText').textContent = '資料更新：' + label + '（' + d.toLocaleDateString('zh-TW') + '）';
+          if (diffDays > 10) {
+            bar.className = 'data-bar warn';
+            bar.textContent = '⚠️ 資料已有 ' + diffDays + ' 天未更新，優惠條件可能有變動，請以各銀行官網為準';
+          } else {
+            bar.className = 'data-bar ok';
+            bar.textContent = '✓ ' + (DB.source || 'Google Gemini AI + Google Search 每週自動更新');
+          }
+          bar.style.display = 'flex';
+        }
+        renderBanks();
+        sa(true);
+      } catch (e) {
+        bar.className = 'data-bar err';
+        bar.textContent = '⚠️ 無法載入回饋資料（' + e.message + '）';
+        bar.style.display = 'flex';
+        document.getElementById('updateTimeText').textContent = '載入失敗';
       }
-      bar.style.display = 'flex';
     }
-    renderBanks();
-    sa(true);
-  } catch(e) {
-    bar.className = 'data-bar err';
-    bar.textContent = '⚠️ 無法載入回饋資料（' + e.message + '）';
-    bar.style.display = 'flex';
-    document.getElementById('updateTimeText').textContent = '載入失敗';
-  }
-}
 
-const bankStyles = {
-  '玉山銀行': { bg:'#FAEEDA', text:'#854F0B' },
-  '中國信託': { bg:'#E6F1FB', text:'#185FA5' },
-  '台新銀行': { bg:'#FCEBEB', text:'#A32D2D' },
-  '星展銀行': { bg:'#E1F5EE', text:'#0F6E56' },
-};
+    const bankStyles = {
+      '玉山銀行': { bg: '#FAEEDA', text: '#854F0B' },
+      '中國信託': { bg: '#E6F1FB', text: '#185FA5' },
+      '台新銀行': { bg: '#FCEBEB', text: '#A32D2D' },
+      '星展銀行': { bg: '#E1F5EE', text: '#0F6E56' },
+    };
 
-function renderBanks() {
-  if (!DB) return;
-  const groups = {};
-  DB.cards.forEach(function(c) {
-    if (!groups[c.bank]) groups[c.bank] = [];
-    groups[c.bank].push(c);
-  });
-  var html = '';
-  Object.keys(groups).forEach(function(bank) {
-    var cards = groups[bank];
-    var s = bankStyles[bank] || { bg:'#EEECEA', text:'#444441' };
-    html += '<div class="bcard">';
-    html += '<div class="bcard-hdr">';
-    html += '<div class="bicon" style="background:' + s.bg + ';color:' + s.text + '">' + bank[0] + '</div>';
-    html += '<span class="bname">' + bank + '</span>';
-    html += '</div><div class="clist">';
-    cards.forEach(function(c) {
-      var types = c.rewards.map(function(r){ return r.type; });
-      var hasBoth = types.indexOf('overseas') > -1 && types.indexOf('domestic') > -1;
-      var cls = hasBoth ? 'bb' : types.indexOf('overseas') > -1 ? 'bo' : 'bd';
-      var lbl = hasBoth ? '通用' : types.indexOf('overseas') > -1 ? '海外' : '國內';
-      var key = bank + '__' + c.card;
-      html += '<label class="crow">';
-      html += '<input type="checkbox" id="cb_' + key + '" onchange="tc(\'' + key + '\')" checked />';
-      html += '<span class="cname">' + c.card + '</span>';
-      html += '<span class="bdg ' + cls + '">' + lbl + '</span>';
-      html += '</label>';
-    });
-    html += '</div></div>';
-  });
-  document.getElementById('bg').innerHTML = html;
-}
-
-function tc(id) { if (checked.has(id)) checked.delete(id); else checked.add(id); update(); }
-
-function sa(v) {
-  if (!DB) return;
-  DB.cards.forEach(function(c) {
-    var key = c.bank + '__' + c.card;
-    if (v) checked.add(key); else checked.delete(key);
-    var cb = document.getElementById('cb_' + key);
-    if (cb) cb.checked = v;
-  });
-  update();
-}
-
-function st(t) {
-  ctype = t;
-  ['bAll','bDom','bOvs'].forEach(function(id){ document.getElementById(id).classList.remove('on'); });
-  var map = {all:'bAll', domestic:'bDom', overseas:'bOvs'};
-  if (map[t]) document.getElementById(map[t]).classList.add('on');
-  update();
-}
-
-function sq(v) { document.getElementById('si').value = v; update(); }
-
-var OVS = ['海外','agoda','booking','klook','airbnb','hotels','expedia','日本','韓國','泰國','新加坡','歐洲','美洲','海外消費','日本消費','日本旅遊'];
-function isOvs(q) { return OVS.some(function(k){ return q.indexOf(k.toLowerCase()) > -1; }); }
-
-function matchReward(reward, q) {
-  return reward.channels.some(function(ch) {
-    return q.indexOf(ch.toLowerCase()) > -1 || ch.toLowerCase().indexOf(q) > -1;
-  });
-}
-
-function update() {
-  if (!DB) return;
-  var q = document.getElementById('si').value.trim().toLowerCase();
-  var ra = document.getElementById('ra');
-
-  if (!q) {
-    ra.innerHTML = '<div class="empty">請先輸入消費通路，並勾選你持有的信用卡<br><span style="font-size:12px">資料由 Google Gemini AI 每週自動更新，無需任何 API Key</span></div>';
-    return;
-  }
-
-  var detOvs = isOvs(q);
-  var rows = [];
-  DB.cards.forEach(function(card) {
-    var key = card.bank + '__' + card.card;
-    if (!checked.has(key)) return;
-    card.rewards.forEach(function(r) {
-      if (!matchReward(r, q)) return;
-      if (ctype === 'domestic' && r.type === 'overseas') return;
-      if (ctype === 'overseas' && r.type === 'domestic') return;
-      rows.push({
-        bank: card.bank, card: card.card,
-        pct: parseFloat(r.pct) || 0,
-        rtype: r.reward_type || '現金回饋',
-        cap: r.cap, cond: r.conditions || [], type: r.type,
-        url: card.official_url || ''
+    function renderBanks() {
+      if (!DB) return;
+      const groups = {};
+      DB.cards.forEach(function (c) {
+        if (!groups[c.bank]) groups[c.bank] = [];
+        groups[c.bank].push(c);
       });
+      var html = '';
+      Object.keys(groups).forEach(function (bank) {
+        var cards = groups[bank];
+        var s = bankStyles[bank] || { bg: '#EEECEA', text: '#444441' };
+        html += '<div class="bcard">';
+        html += '<div class="bcard-hdr">';
+        html += '<div class="bicon" style="background:' + s.bg + ';color:' + s.text + '">' + bank[0] + '</div>';
+        html += '<span class="bname">' + bank + '</span>';
+        html += '</div><div class="clist">';
+        cards.forEach(function (c) {
+          var types = c.rewards.map(function (r) { return r.type; });
+          var hasBoth = types.indexOf('overseas') > -1 && types.indexOf('domestic') > -1;
+          var cls = hasBoth ? 'bb' : types.indexOf('overseas') > -1 ? 'bo' : 'bd';
+          var lbl = hasBoth ? '通用' : types.indexOf('overseas') > -1 ? '海外' : '國內';
+          var key = bank + '__' + c.card;
+          html += '<label class="crow">';
+          html += '<input type="checkbox" id="cb_' + key + '" onchange="tc(\'' + key + '\')" checked />';
+          html += '<span class="cname">' + c.card + '</span>';
+          html += '<span class="bdg ' + cls + '">' + lbl + '</span>';
+          html += '</label>';
+        });
+        html += '</div></div>';
+      });
+      document.getElementById('bg').innerHTML = html;
+    }
+
+    function tc(id) { if (checked.has(id)) checked.delete(id); else checked.add(id); update(); }
+
+    function sa(v) {
+      if (!DB) return;
+      DB.cards.forEach(function (c) {
+        var key = c.bank + '__' + c.card;
+        if (v) checked.add(key); else checked.delete(key);
+        var cb = document.getElementById('cb_' + key);
+        if (cb) cb.checked = v;
+      });
+      update();
+    }
+
+    function st(t) {
+      ctype = t;
+      ['bAll', 'bDom', 'bOvs'].forEach(function (id) { document.getElementById(id).classList.remove('on'); });
+      var map = { all: 'bAll', domestic: 'bDom', overseas: 'bOvs' };
+      if (map[t]) document.getElementById(map[t]).classList.add('on');
+      update();
+    }
+
+    function sq(v) { document.getElementById('si').value = v; update(); }
+
+    var OVS = ['海外', 'agoda', 'booking', 'klook', 'airbnb', 'hotels', 'expedia', '日本', '韓國', '泰國', '新加坡', '歐洲', '美洲', '海外消費', '日本消費', '日本旅遊'];
+    function isOvs(q) { return OVS.some(function (k) { return q.indexOf(k.toLowerCase()) > -1; }); }
+
+    // 改良的模糊比對與一般消費兼容邏輯
+    function matchReward(reward, q) {
+      // 如果使用者查「一般消費」或「基本」，直接比對有包含「一般」的 channels
+      if (q.indexOf('一般') > -1 || q.indexOf('基本') > -1 || q.indexOf('刷卡') > -1) {
+        return reward.channels.some(function (ch) { return ch.indexOf('一般') > -1; });
+      }
+      return reward.channels.some(function (ch) {
+        var target = ch.toLowerCase();
+        return q.indexOf(target) > -1 || target.indexOf(q) > -1;
+      });
+    }
+
+    function update() {
+      if (!DB) return;
+      var q = document.getElementById('si').value.trim().toLowerCase();
+      var ra = document.getElementById('ra');
+
+      if (!q) {
+        ra.innerHTML = '<div class="empty">請先輸入消費通路，並勾選你持有的信用卡<br><span style="font-size:12px">資料由 Google Gemini AI 每週自動更新，無需任何 API Key</span></div>';
+        return;
+      }
+
+      var detOvs = isOvs(q);
+      var rows = [];
+      DB.cards.forEach(function (card) {
+        var key = card.bank + '__' + card.card;
+        if (!checked.has(key)) return;
+        card.rewards.forEach(function (r) {
+          if (!matchReward(r, q)) return;
+          if (ctype === 'domestic' && r.type === 'overseas') return;
+          if (ctype === 'overseas' && r.type === 'domestic') return;
+          rows.push({
+            bank: card.bank, card: card.card,
+            pct: parseFloat(r.pct) || 0,
+            rtype: r.reward_type || '現金回饋',
+            cap: r.cap, cond: r.conditions || [], type: r.type,
+            url: card.official_url || card.card_url || ''
+          });
+        });
+      });
+
+      // 【修正】必須先依照回饋趴數降序排列 (由高到低)
+      rows.sort(function (a, b) { return b.pct - a.pct; });
+
+      // 【修正】排序後再過濾重複卡片，才能保證留下的是「最高回饋率」的那一筆
+      var seen = {};
+      rows = rows.filter(function (r) {
+        var k = r.bank + r.card;
+        if (!seen[k]) { seen[k] = true; return true; }
+        return false;
+      });
+
+      var typeTag = detOvs ? '🌏 海外消費自動辨識' : '🏠 國內消費自動辨識';
+      var qDisplay = document.getElementById('si').value.trim();
+
+      if (rows.length === 0) {
+        ra.innerHTML = '<div class="res-hdr"><div><div class="res-title">「' + qDisplay + '」回饋比較</div><div class="res-meta"><span class="ai-badge">AI 資料</span>' + typeTag + '</div></div></div>'
+          + '<div class="empty">' + (checked.size === 0 ? '請先勾選你持有的信用卡' : '所選卡片中，此通路無特殊回饋記錄') + '</div>';
+        return;
+      }
+
+      var tbody = rows.map(function (r, i) {
+        var rcls = i === 0 ? 'r1' : i === 1 ? 'r2' : i === 2 ? 'r3' : 'rn';
+        var pcls = r.pct >= 5 ? 'ph' : r.pct >= 2 ? 'pm' : 'pl';
+        var tcls = r.type === 'overseas' ? 'bo' : r.type === 'domestic' ? 'bd' : 'bb';
+        var tlbl = r.type === 'overseas' ? '海外' : r.type === 'domestic' ? '國內' : '通用';
+        var cap = (r.cap && r.cap !== 'null')
+          ? '<span class="cap-v">' + r.cap + '</span>'
+          : '<span class="cap-n">無上限</span>';
+        var conds = r.cond.length
+          ? r.cond.map(function (c) { return '<span class="chip">' + c + '</span>'; }).join('')
+          : '<span style="font-size:12px;color:var(--text3)">無特殊條件</span>';
+        var rtypeShow = r.rtype !== '現金回饋'
+          ? '<span class="rtype">' + r.rtype + '</span>' : '';
+        return '<tr>'
+          + '<td><span class="rk ' + rcls + '">' + (i + 1) + '</span></td>'
+          + '<td><div class="bsub">' + r.bank + '</div><div class="cmain">' + r.card + '</div></td>'
+          + '<td><span class="pnum ' + pcls + '">' + r.pct.toFixed(1) + '%</span>' + rtypeShow + '</td>'
+          + '<td class="hide-m"><span class="bdg ' + tcls + '">' + tlbl + '</span></td>'
+          + '<td>' + conds + '</td>'
+          + '<td>' + cap + '</td>'
+          + '<td>' + (r.url ? '<a href="' + r.url + '" target="_blank" rel="noopener" style="color:var(--blue);font-size:12px;text-decoration:none;white-space:nowrap;">連結 ↗</a>' : '<span style="color:var(--text3);font-size:12px;">—</span>') + '</td>'
+          + '</tr>';
+      }).join('');
+
+      ra.innerHTML = '<div class="res-hdr"><div>'
+        + '<div class="res-title">「' + qDisplay + '」回饋比較</div>'
+        + '<div class="res-meta"><span class="ai-badge">AI 資料</span>' + typeTag + '</div>'
+        + '</div><div class="res-count">共 ' + rows.length + ' 筆</div></div>'
+        + '<div class="tbl-wrap"><table>'
+        + '<thead><tr><th>#</th><th>銀行 / 卡片</th><th>回饋%</th><th class="hide-m">類型</th><th>條件說明</th><th>回饋上限</th><th>官網</th></tr></thead>'
+        + '<tbody>' + tbody + '</tbody>'
+        + '</table></div>';
+    }
+
+    // 加入 Debounce 防抖優化效能，避免頻繁渲染卡頓
+    document.getElementById('si').addEventListener('input', function () {
+      clearTimeout(debounceTimeout);
+      debounceTimeout = setTimeout(update, 150);
     });
-  });
-
-  // 每張卡只保留最高回饋那筆
-  var seen = {};
-  rows = rows.filter(function(r) {
-    var k = r.bank + r.card;
-    if (!seen[k] || r.pct > seen[k]) { seen[k] = r.pct; return true; }
-    return false;
-  });
-  rows.sort(function(a, b) { return b.pct - a.pct; });
-
-  var typeTag = detOvs ? '🌏 海外消費自動辨識' : '🏠 國內消費自動辨識';
-  var qDisplay = document.getElementById('si').value.trim();
-
-  if (rows.length === 0) {
-    ra.innerHTML = '<div class="res-hdr"><div><div class="res-title">「' + qDisplay + '」回饋比較</div><div class="res-meta"><span class="ai-badge">AI 資料</span>' + typeTag + '</div></div></div>'
-      + '<div class="empty">' + (checked.size === 0 ? '請先勾選你持有的信用卡' : '所選卡片中，此通路無特殊回饋記錄') + '</div>';
-    return;
-  }
-
-  var tbody = rows.map(function(r, i) {
-    var rcls = i===0?'r1':i===1?'r2':i===2?'r3':'rn';
-    var pcls = r.pct>=5?'ph':r.pct>=2?'pm':'pl';
-    var tcls = r.type==='overseas'?'bo':r.type==='domestic'?'bd':'bb';
-    var tlbl = r.type==='overseas'?'海外':r.type==='domestic'?'國內':'通用';
-    var cap = (r.cap && r.cap!=='null')
-      ? '<span class="cap-v">' + r.cap + '</span>'
-      : '<span class="cap-n">無上限</span>';
-    var conds = r.cond.length
-      ? r.cond.map(function(c){ return '<span class="chip">' + c + '</span>'; }).join('')
-      : '<span style="font-size:12px;color:var(--text3)">無特殊條件</span>';
-    var rtypeShow = r.rtype !== '現金回饋'
-      ? '<span class="rtype">' + r.rtype + '</span>' : '';
-    return '<tr>'
-      + '<td><span class="rk ' + rcls + '">' + (i+1) + '</span></td>'
-      + '<td><div class="bsub">' + r.bank + '</div><div class="cmain">' + r.card + '</div></td>'
-      + '<td><span class="pnum ' + pcls + '">' + r.pct.toFixed(1) + '%</span>' + rtypeShow + '</td>'
-      + '<td class="hide-m"><span class="bdg ' + tcls + '">' + tlbl + '</span></td>'
-      + '<td>' + conds + '</td>'
-      + '<td>' + cap + '</td>'
-      + '<td>' + (r.url ? '<a href="' + r.url + '" target="_blank" rel="noopener" style="color:var(--blue);font-size:12px;text-decoration:none;white-space:nowrap;">連結 ↗</a>' : '<span style="color:var(--text3);font-size:12px;">—</span>') + '</td>'
-      + '</tr>';
-  }).join('');
-
-  ra.innerHTML = '<div class="res-hdr"><div>'
-    + '<div class="res-title">「' + qDisplay + '」回饋比較</div>'
-    + '<div class="res-meta"><span class="ai-badge">AI 資料</span>' + typeTag + '</div>'
-    + '</div><div class="res-count">共 ' + rows.length + ' 筆</div></div>'
-    + '<div class="tbl-wrap"><table>'
-    + '<thead><tr><th>#</th><th>銀行 / 卡片</th><th>回饋%</th><th class="hide-m">類型</th><th>條件說明</th><th>回饋上限</th><th>官網</th></tr></thead>'
-    + '<tbody>' + tbody + '</tbody>'
-    + '</table></div>';
-}
-
-document.getElementById('si').addEventListener('input', update);
-document.getElementById('si').addEventListener('keydown', function(e){ if(e.key==='Enter') update(); });
-loadData();
-</script>
+    document.getElementById('si').addEventListener('keydown', function (e) { if (e.key === 'Enter') { clearTimeout(debounceTimeout); update(); } });
+    loadData();
+  </script>
 </body>
+
 </html>
