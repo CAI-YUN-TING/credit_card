@@ -183,7 +183,7 @@
     {
       "bank": "玉山銀行",
       "card": "Nissan聯名卡",
-      "card_url": "https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/nissan",
+      "card_url": "https://www.esunbank.com/zh-tw/personal/credit-card/intro/co-branded-card/nissan-card",
       "card_type": "both",
       "rewards": [
         {
@@ -259,7 +259,7 @@
     {
       "bank": "中國信託",
       "card": "LINE Pay卡",
-      "card_url": "https://www.ctbcbank.com/twrbo/zh_tw/cc_index/cc_product/cc_introduction_index/C_LINEPAY.html",
+      "card_url": "https://www.ctbcbank.com/content/dam/minisite/long/creditcard/LINEPay/index.html",
       "card_type": "both",
       "rewards": [
         {
@@ -318,7 +318,7 @@
     {
       "bank": "中國信託",
       "card": "UniOpen卡",
-      "card_url": "https://www.ctbcbank.com/twrbo/zh_tw/cc_index/cc_product/cc_introduction_index/UniOpen.html",
+      "card_url": "https://www.ctbcbank.com/twrbo/zh_tw/cc_index/cc_product/cc_introduction_index/C_uniopen.html",
       "card_type": "both",
       "rewards": [
         {
@@ -359,7 +359,7 @@
     {
       "bank": "中國信託",
       "card": "商旅鈦金卡",
-      "card_url": "https://www.ctbcbank.com/twrbo/zh_tw/cc_index/cc_product/cc_introduction_index/C_titanium.html",
+      "card_url": "https://www.ctbcbank.com/twrbo/zh_tw/cc_index/cc_product/cc_introduction_index/B_EP_Titanium.html",
       "card_type": "both",
       "rewards": [
         {
@@ -399,7 +399,7 @@
     {
       "bank": "台新銀行",
       "card": "Richart卡",
-      "card_url": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/richart/",
+      "card_url": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/overview/cg047/card001/",
       "card_type": "both",
       "rewards": [
         {
@@ -441,7 +441,7 @@
     {
       "bank": "星展銀行",
       "card": "傳說對決卡",
-      "card_url": "https://www.dbs.com/tw/personal-zh/cards/credit-cards/arena-of-valor.page",
+      "card_url": "https://www.dbs.com.tw/personal-zh/cards/dbs-aov/index.html",
       "card_type": "both",
       "rewards": [
         {
@@ -484,8 +484,8 @@
     {
       "bank": "星展銀行",
       "card": "eco永續卡",
-      "url": "https://www.dbs.com/tw/personal-zh/cards/credit-cards/eco-card.page",
-      "card_url": "https://www.dbs.com/tw/personal-zh/cards/credit-cards/eco-card.page",
+      "url": "https://www.dbs.com.tw/personal-zh/cards/dbs_eco/index.html",
+      "card_url": "https://www.dbs.com.tw/personal-zh/cards/dbs_eco/index.html",
       "card_type": "both",
       "rewards": [
         {
