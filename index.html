@@ -334,7 +334,8 @@ function update() {
         bank: card.bank, card: card.card,
         pct: parseFloat(r.pct) || 0,
         rtype: r.reward_type || '現金回饋',
-        cap: r.cap, cond: r.conditions || [], type: r.type
+        cap: r.cap, cond: r.conditions || [], type: r.type,
+        url: card.official_url || ''
       });
     });
   });
@@ -377,6 +378,7 @@ function update() {
       + '<td class="hide-m"><span class="bdg ' + tcls + '">' + tlbl + '</span></td>'
       + '<td>' + conds + '</td>'
       + '<td>' + cap + '</td>'
+      + '<td>' + (r.url ? '<a href="' + r.url + '" target="_blank" rel="noopener" style="color:var(--blue);font-size:12px;text-decoration:none;white-space:nowrap;">連結 ↗</a>' : '<span style="color:var(--text3);font-size:12px;">—</span>') + '</td>'
       + '</tr>';
   }).join('');
 
@@ -385,7 +387,7 @@ function update() {
     + '<div class="res-meta"><span class="ai-badge">AI 資料</span>' + typeTag + '</div>'
     + '</div><div class="res-count">共 ' + rows.length + ' 筆</div></div>'
     + '<div class="tbl-wrap"><table>'
-    + '<thead><tr><th>#</th><th>銀行 / 卡片</th><th>回饋%</th><th class="hide-m">類型</th><th>條件說明</th><th>回饋上限</th></tr></thead>'
+    + '<thead><tr><th>#</th><th>銀行 / 卡片</th><th>回饋%</th><th class="hide-m">類型</th><th>條件說明</th><th>回饋上限</th><th>官網</th></tr></thead>'
     + '<tbody>' + tbody + '</tbody>'
     + '</table></div>';
 }

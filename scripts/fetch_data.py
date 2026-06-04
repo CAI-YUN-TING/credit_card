@@ -87,7 +87,7 @@ def call_gemini(api_key, prompt):
     url  = GEMINI_API_URL.format(model=GEMINI_MODEL, key=api_key)
     body = {
         "contents": [{"parts": [{"text": prompt}]}],
-        "tools": [{"google_search": {}}],
+        # "tools": [{"google_search": {}}],  # 若需即時搜尋可取消此行註解，但需先至 Google Cloud 啟用 Billing
         "generationConfig": {"temperature": 0.2, "maxOutputTokens": 8192},
     }
     data = json.dumps(body).encode("utf-8")

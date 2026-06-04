@@ -53,7 +53,8 @@
           "conditions": [],
           "type": "both"
         }
-      ]
+      ],
+      "official_url": "https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/kumamon"
     },
     {
       "bank": "玉山銀行",
@@ -129,7 +130,8 @@
           ],
           "type": "both"
         }
-      ]
+      ],
+      "official_url": "https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/unicard"
     },
     {
       "bank": "玉山銀行",
@@ -189,7 +191,8 @@
           "conditions": [],
           "type": "both"
         }
-      ]
+      ],
+      "official_url": "https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/u-bear"
     },
     {
       "bank": "玉山銀行",
@@ -238,7 +241,8 @@
           "conditions": [],
           "type": "both"
         }
-      ]
+      ],
+      "official_url": "https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/nissan"
     },
     {
       "bank": "中國信託",
@@ -275,7 +279,8 @@
           ],
           "type": "both"
         }
-      ]
+      ],
+      "official_url": "https://www.ctbcbank.com/twrbo/zh_tw/cc_index/cc_product/cc_introduction_index/C_cpc.html"
     },
     {
       "bank": "中國信託",
@@ -350,7 +355,8 @@
           "conditions": [],
           "type": "both"
         }
-      ]
+      ],
+      "official_url": "https://www.ctbcbank.com/twrbo/zh_tw/cc_index/cc_product/cc_introduction_index/C_linepay.html"
     },
     {
       "bank": "中國信託",
@@ -421,7 +427,8 @@
           "conditions": [],
           "type": "both"
         }
-      ]
+      ],
+      "official_url": "https://mkt.ctbcbank.com/long/creditcard/N2025052600033_01/index.html"
     },
     {
       "bank": "中國信託",
@@ -516,7 +523,8 @@
           ],
           "type": "both"
         }
-      ]
+      ],
+      "official_url": "https://www.ctbcbank.com/twrbo/zh_tw/cc_index/cc_product/cc_introduction_index/C_titanium.html"
     },
     {
       "bank": "台新銀行",
@@ -595,7 +603,8 @@
           "conditions": [],
           "type": "both"
         }
-      ]
+      ],
+      "official_url": "https://www.taishinbank.com.tw/TSB/personal/credit/intro/richart/"
     },
     {
       "bank": "星展銀行",
@@ -654,7 +663,8 @@
           "conditions": [],
           "type": "both"
         }
-      ]
+      ],
+      "official_url": "https://www.dbs.com/tw/personal-zh/cards/credit-cards/arena-of-valor.page"
     },
     {
       "bank": "星展銀行",
@@ -725,7 +735,8 @@
           ],
           "type": "both"
         }
-      ]
+      ],
+      "official_url": "https://www.dbs.com/tw/personal-zh/cards/credit-cards/eco-card.page"
     }
   ]
 }
