@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-04T18:40:00+08:00",
+  "updated_at": "2026-06-04T18:50:00+08:00",
   "source": "Google Gemini AI + Google Search（每週自動更新，永久免費）",
   "cards": [
     {
@@ -484,6 +484,7 @@
     {
       "bank": "星展銀行",
       "card": "eco永續卡",
+      "url": "https://www.dbs.com/tw/personal-zh/cards/credit-cards/eco-card.page",
       "card_url": "https://www.dbs.com/tw/personal-zh/cards/credit-cards/eco-card.page",
       "card_type": "both",
       "rewards": [
